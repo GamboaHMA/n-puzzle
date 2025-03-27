@@ -1,4 +1,8 @@
+import os
+import pygame
 from itertools import count
+
+import pygame.locals
 
 class Tile:
     def __init__(self, counter, size):
@@ -9,6 +13,11 @@ class Tile:
         else:
             self.isEmptyTile = False
         self.coord = (self.origin_coord[0], self.origin_coord[1])
+        try:
+            image_rute = os.path.join("pictures", f'number{counter+1}.png')
+            self.image = pygame.image.load(image_rute)
+        except FileNotFoundError:
+            print('ruta no encontrada')
     
     def getAdjacentsCoords(self):
         adjacents_coords = []
